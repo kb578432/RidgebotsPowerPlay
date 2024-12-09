@@ -1,0 +1,81 @@
+// Roadrunner asserts that this file build.dependencies.gradle should look as follows after installation
+// ```
+// repositories {
+//    mavenCentral()
+//    google() // Needed for androidx
+//    jcenter()  // Needed for tensorflow-lite
+//    maven { url = 'https://maven.brott.dev/' }
+//    flatDir {
+//        dirs rootProject.file('libs')
+//    }
+// }
+//
+// dependencies {
+//    implementation 'org.firstinspires.ftc:Inspection:8.0.0'
+//    implementation 'org.firstinspires.ftc:Blocks:8.0.0'
+//    implementation 'org.firstinspires.ftc:Tfod:8.0.0'
+//    implementation 'org.firstinspires.ftc:RobotCore:8.0.0'
+//    implementation 'org.firstinspires.ftc:RobotServer:8.0.0'
+//    implementation 'org.firstinspires.ftc:OnBotJava:8.0.0'
+//    implementation 'org.firstinspires.ftc:Hardware:8.0.0'
+//    implementation 'org.firstinspires.ftc:FtcCommon:8.0.0'
+//    implementation 'org.tensorflow:tensorflow-lite-task-vision:0.2.0'
+//    implementation 'androidx.appcompat:appcompat:1.2.0'
+//    implementation 'org.firstinspires.ftc:gameAssets-FreightFrenzy:1.0.0'
+//
+//    implementation 'com.acmerobotics.dashboard:dashboard:0.4.5'
+// }
+// ```
+// This is different from our team's file.
+// Specifically, our team's file does not include `repositories {...jcenter()...}`,
+// and instances of 8.0.0 are replaced by 8.1.1
+//
+// `repositories {...jcenter()...}` is likely not a source of concern.
+// The adjacent comment clarifies that it is "Needed for tensorflow-lite", a deep learning framework absent in our code.
+//
+// The difference between 8.0.0 and 8.1.1 is more concerning as it's unclear if it jeopardizes functionality of Roadrunner and/or FTC Dashboard.
+//
+// Source: https://learnroadrunner.com/installing.html#method-2-installing-rr-on-your-project
+repositories {
+    mavenCentral()
+    google() // Needed for androidx
+
+
+    // Roadrunner and FTC Dashboard instructs adding the following line.
+    maven { url = 'https://maven.brott.dev/' }
+
+    flatDir {
+        dirs rootProject.file('libs')
+    }
+}
+
+dependencies {
+    implementation 'org.firstinspires.ftc:Inspection:8.1.0'
+    implementation 'org.firstinspires.ftc:Blocks:8.1.0'
+    implementation 'org.firstinspires.ftc:Tfod:8.1.0'
+    implementation 'org.firstinspires.ftc:RobotCore:8.1.0'
+    implementation 'org.firstinspires.ftc:RobotServer:8.1.0'
+    implementation 'org.firstinspires.ftc:OnBotJava:8.1.0'
+    implementation 'org.firstinspires.ftc:Hardware:8.1.0'
+    implementation 'org.firstinspires.ftc:FtcCommon:8.1.0'
+    implementation 'org.tensorflow:tensorflow-lite-task-vision:0.2.0'
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'org.firstinspires.ftc:gameAssets-PowerPlay:1.0.0'
+
+    // There are conflicting installation instructions between Roadrunner and FTC Dashboard.
+    //
+    // Roadrunner instructs adding 'com.acmerobotics.dashboard:dashboard:0.4.5'
+    // Source: https://learnroadrunner.com/installing.html#method-2-installing-rr-on-your-project
+    //
+    // FTC Dashboard instructs adding 'com.acmerobotics.dashboard:dashboard:0.4.6'
+    // FTC Dashboard provides additional instructions as follows:
+    // Note: If you’re using OpenRC or have non-standard SDK dependencies, add the following exclusion.
+    // ```
+    // implementation('com.acmerobotics.dashboard:dashboard:0.4.7') {
+    //    exclude group: 'org.firstinspires.ftc'
+    // }
+    // ```
+    // Source: https://acmerobotics.github.io/ftc-dashboard/gettingstarted
+    implementation 'com.acmerobotics.dashboard:dashboard:0.4.7'
+}
+
